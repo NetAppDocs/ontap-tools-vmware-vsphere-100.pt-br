@@ -1,0 +1,142 @@
+---
+permalink: configure/task_configure_user_role_and_privileges.html 
+sidebar: sidebar 
+keywords: user roles 
+summary: Você pode configurar novas funções de usuário para gerenciar backends de armazenamento usando o arquivo JSON fornecido com as ferramentas do ONTAP e o Gerenciador de sistema do ONTAP. 
+---
+= Configurar funções de usuário e Privileges
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode configurar novas funções de usuário e Privileges para gerenciar backends de storage usando o arquivo JSON fornecido com as ferramentas do ONTAP e o Gerenciador de sistema do ONTAP.
+
+*O que você vai precisar*
+
+* Você deve ter baixado o arquivo ONTAP Privileges de ferramentas do ONTAP usando `\https://<loadbalancerIP>:8443/virtualization/user-privileges/users_roles.zip`o .
++
+
+NOTE: Você pode criar usuários no cluster ou no nível de máquinas virtuais de armazenamento direto (SVMs). Você também pode criar usuários sem usar o arquivo user_roles.json e, se feito isso, você precisa ter um conjunto mínimo de Privileges no nível SVM.
+
+* Você deve ter feito login com o administrador Privileges para o back-end de storage.
+
+
+*Passos*
+
+. Extraia o ficheiro transferido `\https://<loadbalancerIP>:8443/virtualization/user-privileges/users_roles.zip`.
+. Acesse o Gerenciador do sistema do ONTAP. Para acessar o gerenciador de sistema do ONTAP, use o IP de gerenciamento de cluster do cluster.
+. Faça login como cluster ou usuário do SVM.
+. Selecione o painel *cluster* > *Configurações* > *usuários e funções*.
+. Selecione *Adicionar* em usuários.
+. Na caixa de diálogo *Adicionar usuário*, selecione *Produtos de virtualização*.
+. Selecione *Procurar* para selecionar e carregar o arquivo JSON do ONTAP Privileges.
++
+O CAMPO DE PRODUTO é preenchido automaticamente.
+
+. Selecione a capacidade necessária no menu pendente CAPACIDADE DO PRODUTO.
++
+O campo *ROLE* é preenchido automaticamente com base na capacidade do produto selecionada.
+
+. Introduza o nome de utilizador e a palavra-passe necessários.
+. Selecione a função Privileges (descoberta, criação de armazenamento, Modificar armazenamento, destruir armazenamento, nas/SAN) necessária para o usuário e clique em *Adicionar*.
+
+
+A nova função e usuário são adicionados e você pode ver o Privileges detalhado na função que você configurou.
+
+
+NOTE: A operação de desinstalação não remove as funções da ferramenta ONTAP, mas remove os nomes localizados para o Privileges específico da ferramenta ONTAP e anexa o prefixo `XXX missing privilege` a eles. Quando você reinstalar as ferramentas do ONTAP ou atualizar para uma versão mais recente das ferramentas do ONTAP, todas as funções padrão das ferramentas do ONTAP e Privileges específicas das ferramentas do ONTAP são restauradas.
+
+
+
+== Requisitos de mapeamento de agregados da SVM
+
+Para usar credenciais diretas da SVM para provisionar armazenamentos de dados, as ferramentas internas do ONTAP criam volumes no agregado especificado no PÓS-API dos armazenamentos de dados. O ONTAP não permite a criação de volumes em agregados não mapeados em uma SVM usando credenciais diretas. Para resolver isso, você precisa mapear os SVMs com os agregados usando a API REST ou CLI, conforme descrito aqui.
+
+API REST:
+
+[listing]
+----
+PATCH "/api/svm/svms/f16f0935-5281-11e8-b94d-005056b46485" '{"aggregates":{"name":["aggr1","aggr2","aggr3"]}}'
+----
+CLI do ONTAP:
+
+[listing]
+----
+sti115_vsim_ucs630f_aggr1 vserver show-aggregates                                        AvailableVserver        Aggregate      State         Size Type    SnapLock Type-------------- -------------- ------- ---------- ------- --------------svm_test       sti115_vsim_ucs630f_aggr1                               online     10.11GB vmdisk  non-snaplock
+----
+
+
+== Crie manualmente o usuário e a função do ONTAP
+
+Siga as instruções nesta seção para criar o usuário e as funções manualmente sem usar o arquivo JSON.
+
+. Acesse o Gerenciador do sistema do ONTAP. Para acessar o gerenciador de sistema do ONTAP, use o IP de gerenciamento de cluster do cluster.
+. Faça login como cluster ou usuário do SVM.
+. Selecione o painel *cluster* > *Configurações* > *usuários e funções*.
+. Criar funções:
++
+.. Selecione *Adicionar* na tabela *funções*.
+.. Insira os detalhes *NOME DA FUNÇÃO* e *atributos da função*.
++
+Adicione o *REST API PATH* e o respetivo acesso a partir da lista suspensa.
+
+.. Adicione todas as APIs necessárias e salve as alterações.
+
+
+. Criar utilizadores:
++
+.. Selecione *Adicionar* na tabela *usuários*.
+.. Na caixa de diálogo *Adicionar usuário*, selecione *System Manager*.
+.. Introduza o *NOME DE UTILIZADOR*.
+.. Selecione a FUNÇÃO * nas opções criadas na etapa *Create Roles* acima.
+.. Introduza as aplicações a que pretende dar acesso e o método de autenticação. O ONTAPI e HTTP são o aplicativo necessário e o tipo de autenticação é *Password*.
+.. Defina *Senha para o usuário* e *Salvar* para o usuário.
+
+
+
+
+
+
+== Lista de Privileges mínimo necessário para usuário de cluster com escopo global não administrador
+
+O Privileges mínimo necessário para usuários de cluster com escopo global não admin criado sem usar o arquivo JSON de usuários é listado nesta seção. Se o cluster for adicionado no escopo local, é recomendável usar o arquivo JSON para criar os usuários, já que as ferramentas do ONTAP exigem mais do que apenas o Privileges de leitura para provisionamento no ONTAP.
+
+Usando APIs:
+
+|===
+
+
+| API | NÍVEL DE ACESSO | USADO PARA 
+
+
+| /api/cluster | Somente leitura | Detecção de configuração do cluster 
+
+
+| /api/cluster/licenciamento/licenças | Somente leitura | Verificação de licença para licenças específicas de protocolo 
+
+
+| /api/cluster/nós | Somente leitura | Descoberta do tipo de plataforma 
+
+
+| /api/storage/agregados | Somente leitura | Verificação de espaço agregado durante o provisionamento de armazenamento de dados/volume 
+
+
+| /api/storage/cluster | Somente leitura | Para obter os dados de espaço e eficiência no nível do cluster 
+
+
+| /api/storage/discos | Somente leitura | Para obter os discos associados em um agregado 
+
+
+| /api/storage/qos/políticas | Ler/criar/Modificar | Gerenciamento de políticas de QoS e VM 
+
+
+| /api/svm/svms | Somente leitura | Para obter a configuração da SVM, caso o cluster seja adicionado localmente. 
+
+
+| /api/network/ip/interfaces | Somente leitura | Back-end de storage: Para identificar o escopo de LIF de gerenciamento é Cluster/SVM 
+
+
+| /api | Somente leitura | O usuário de cluster deve ter esse privilégio para obter o status correto de back-end de armazenamento. Caso contrário, a IU do Gerenciador de ferramentas do ONTAP mostra o status de back-end de armazenamento "desconhecido". 
+|===

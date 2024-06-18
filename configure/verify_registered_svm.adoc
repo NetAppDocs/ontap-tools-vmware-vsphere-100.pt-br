@@ -1,0 +1,23 @@
+---
+permalink: configure/verify_registered_svm.html 
+sidebar: sidebar 
+keywords:  
+summary: Verifique se o SVM integrado está listado em Fornecedor VASA da IU do vCenter. 
+---
+= Verificar SVM registrado
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Verifique se o SVM integrado está listado em Fornecedor VASA da IU do vCenter.
+
+*Passos*
+
+. Navegue até o vCenter Server.
+. Inicie sessão com as credenciais de administrador.
+. Selecione *fornecedores de armazenamento*.
+. Selecione *Configurar*.
+. Em backends de storage/fornecedor de storage, verifique se o SVM integrado está listado corretamente.
+

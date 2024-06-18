@@ -1,0 +1,52 @@
+---
+permalink: manage/storage_backend.html 
+sidebar: sidebar 
+keywords:  
+summary: Os backends de armazenamento são sistemas que os hosts EXSi usam para armazenamento de dados. 
+---
+= Gerenciar o back-end de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os backends de armazenamento são sistemas que os hosts EXSi usam para armazenamento de dados.
+
+
+
+== Adicionar back-end de storage
+
+Siga as etapas abaixo para adicionar backends de armazenamento.
+
+*Passos*
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione *backends de armazenamento* na barra lateral.
+. Selecione *Adicionar*.
+
+
+
+
+== Modificar o back-end de storage
+
+Siga as etapas abaixo para modificar o back-end de armazenamento existente.
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione backends de armazenamento na barra lateral.
+. Selecione o *Storage backend* que você deseja modificar
+. Clique no menu reticências verticais e selecione *Modificar*.
+. Digite *Nome de usuário* e *Senha* para modificar o back-end de armazenamento.
+
+
+
+
+== Remova o back-end de storage
+
+Você precisa excluir todos os datastores anexados ao back-end de armazenamento antes de remover o back-end de armazenamento. Siga as etapas abaixo para remover o back-end de armazenamento.
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione *backends de armazenamento* na barra lateral.
+. Selecione o back-end de armazenamento que você deseja remover
+. Clique no menu reticências verticais e selecione *Remover*.
+

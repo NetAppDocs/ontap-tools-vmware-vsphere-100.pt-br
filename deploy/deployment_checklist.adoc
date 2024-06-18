@@ -1,0 +1,75 @@
+---
+permalink: deploy/deployment_checklist.html 
+sidebar: sidebar 
+keywords:  
+summary: A lista de verificação aqui ajuda você a ter todas as informações à mão antes de iniciar a implantação. 
+---
+= Lista de verificação da implantação
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A lista de verificação aqui ajuda você a ter todas as informações à mão antes de iniciar a implantação. Certifique-se de anotar estes valores para a sua configuração antes de implementar.
+
+Você deve estar ciente dos requisitos básicos de back-end de storage, requisitos de aplicativos e requisitos de licença antes de começar a implantar as ferramentas do ONTAP para o VMware vSphere. Antes de implantar as ferramentas do ONTAP para o VMware vSphere, é uma prática recomendada Planejar sua implantação e decidir como você deseja configurar as ferramentas do ONTAP em seu ambiente.
+
+*Primeiro nó e outros campos comuns*
+
+* Nome de usuário do provedor VASA(*)
+* Nome de usuário do administrador(*)
+* Servidores NTP (fornecidos ao vCenter para sincronização de tempo)
+
+
+*Detalhes do certificado*
+
+* Ative o certificado de CA personalizado
+* Certificados raiz e intermédios (ignorar quando a assinatura automática está ativada)
+* Certificado de folha e chave privada (ignorados quando a assinatura automática está ativada)
+* Nome de domínio (*) (ignorado quando autoassinado está habilitado)
+
+
+*Load balancer e detalhes do servidor API*
+
+* Load Balancer IP(*)
+* IP virtual para plano de controle K8sD(*)
+
+
+*Detalhes do ONTAP*
+
+* ONTAP Management LIF(*) (IP de gerenciamento de cluster)
+* ONTAP Data LIF(*)
+* VM de armazenamento (*)
+* Nome de usuário do cluster do ONTAP(*)
+* Ative a migração
+* VM principal
+* Nome da Biblioteca de conteúdo (*)
+* Nome do modelo OVF(*)
+* Hostname(*)
+* Nome de usuário (*)
+
+
+*Detalhes da rede do primeiro nó*
+
+* Hostname(*)
+* Ipaddress(*)
+* Comprimento do prefixo (apenas para IPv6)
+* Máscara de rede (apenas para IPv4)(*)
+* Gateway(*)
+* DNS primário (*)
+* DNS secundário (*)
+* Domínios de Pesquisa(*)
+
+
+*Segundo nó - Detalhes da rede do nó*
+
+* Hostname(*)
+* Ipaddress(*)
+
+
+* Terceiro nó - Detalhes da rede do nó*
+
+* Hostname(*)
+* Ipaddress(*)
+

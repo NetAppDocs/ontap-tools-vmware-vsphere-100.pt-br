@@ -1,0 +1,28 @@
+---
+permalink: manage/task_collect_the_log_files.html 
+sidebar: sidebar 
+keywords:  
+summary: Você pode coletar arquivos de log para as ferramentas do ONTAP para VMware vSphere a partir da opção disponível na interface gráfica do usuário do ONTAP Tools. O suporte técnico pode solicitar que você colete os arquivos de log para ajudar a solucionar um problema. 
+---
+= Recolha os ficheiros de registo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode coletar arquivos de log para as ferramentas do ONTAP para VMware vSphere na opção disponível na interface do usuário do Gerenciador de ferramentas do ONTAP. O suporte técnico pode solicitar que você colete os arquivos de log para ajudar a solucionar um problema.
+
+*Passos*
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione *Log Bundles* na barra lateral.
++
+Esta operação pode demorar vários minutos.
+
+. Selecione *GENERATE* para gerar os arquivos de log.
+. Insira o rótulo do Pacote de Log e selecione *GENERATE*.
++
+Baixe o arquivo tar.gz e envie-o para o suporte técnico.
+
+

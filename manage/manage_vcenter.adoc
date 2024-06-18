@@ -1,0 +1,114 @@
+---
+permalink: manage/manage_vcenter.html 
+sidebar: sidebar 
+keywords:  
+summary: VCenters são plataformas de gerenciamento central que permitem controlar hosts, máquinas virtuais e backends de armazenamento. 
+---
+= Gerenciar o vCenter
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+VCenters são plataformas de gerenciamento central que permitem controlar hosts, máquinas virtuais e backends de armazenamento.
+
+
+
+== Adicione o vCenter
+
+Você pode adicionar e gerenciar vários vCenters com uma instância de ferramentas do ONTAP para VMware vCenter 10,0.
+
+*Passos*
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione vCenters na barra lateral
+. Selecione *ADD* aos vCenters integrados com o vCenter IP Address/Hostname, nome de usuário, senha e porta.
+. Navegue até a página *backend de armazenamento* e selecione *Adicionar ao backend de armazenamento integrado* (cluster ONTAP) com nome de host, nome de usuário, senha e porta.
+
+
+link:../configure/task_configure_user_role_and_privileges.html["Lista de Privileges mínimo necessário para usuário de cluster com escopo global não administrador"]Consulte .
+
+
+
+== Associar ou dissociar o back-end de armazenamento com o vCenter
+
+A página de listagem do vCenter mostra o número associado de backends de armazenamento. Cada vCenter tem a opção de associar ou desassociar um back-end de storage essa tarefa ajuda você a criar um mapeamento entre o back-end de storage e o vCenter integrado globalmente.
+
+*Passos*
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione vCenters na barra lateral.
+. Clique na elipse vertical contra o vCenter que você deseja associar ou dissociar com backends de armazenamento.
+. Selecione *associar ou dissociar o back-end de armazenamento* dependendo da ação que você deseja executar.
++
+link:../configure/task_configure_user_role_and_privileges.html["Lista de Privileges mínimo necessário para usuário de cluster com escopo global não administrador"]Consulte .
+
+
+
+
+
+== Modifique o vCenter
+
+Siga as etapas abaixo para modificar os vCenters.
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione vCenters na barra lateral
+. Clique na elipse vertical em relação ao vCenter que você deseja modificar e selecione *Modificar*.
+. Modifique os detalhes do vCenter e selecione *Modificar*.
+
+
+
+
+== Remova o vCenter
+
+Você precisa remover todos os backends de armazenamento anexados ao vCenter antes de removê-lo.
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione vCenters na barra lateral
+. Clique na elipse vertical contra o vCenter que você deseja remover e selecione *Remover*.
++
+
+NOTE: Depois de remover o vCenter, ele não será mais mantido pelo aplicativo.
+
+
+
+
+
+== Gerenciar limite de armazenamento
+
+Use a seguinte API Get threshold para recuperar os limites de limite de armazenamento configurados para volume e agregado.
+
+[listing]
+----
+GET​/virtualization​/api​/v1​/vcenters​/{vcguid}​/storage-thresholds
+----
+Exemplos: Obtenha os limites de armazenamento por vcenter pelo vcenter guid
+
+[listing]
+----
+GET "/api/v1/vcenters/beded9ad-6bbb-4c9e-b4c6-691250bfe2da/storage-thresholds"
+----
+Use o SEGUINTE PATCH configure o alarme para volume e agregado para gerar notificação quando os limites de limite configurados forem atingidos.
+
+[listing]
+----
+PATCH​/virtualization​/api​/v1​/vcenters​/{vcguid}​/storage-thresholds
+----
+Exemplos: Atualize os limites de armazenamento por vcenter pelo vcenter guid. Os limites padrão são 80% para quase-cheio e 90% para cheio. Modificar todas as definições de limiar
+
+[listing]
+----
+{{{}PATCH "/api/v1/vcenters/beded9ad-6bbb-4c9e-b4c6-691250bfe2da/storage-thresholds"
+Request Body
+{
+"volume":
+
+{ "nearly_full_percent": 80, "full_percent": 90 }
+,
+"aggregate": {
+"nearly_full_percent": 80,
+"full_percent": 90
+}
+}{}}}{}
+----

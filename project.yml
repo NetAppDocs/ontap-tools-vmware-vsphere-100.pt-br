@@ -1,0 +1,22 @@
+---
+settings:
+  name: ONTAP tools for VMware vSphere 10.0
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: pt-br,us-en,ja-jp,ko-kr,zh-cn,zh-tw,de-de,es-es,fr-fr,it-it
+sidebar:
+  entries:
+  - title: Ferramentas do ONTAP para documentos do VMware vSphere 10,0
+    url: "/index.html"
+  - title: Notas de lançamento
+    url: "/release_notes.html"
+  - section: concepts
+  - section: deploy
+  - section: configure
+  - section: manage
+  - section: migrate
+  - title: Avisos legais
+    url: "/legal-notices.html"

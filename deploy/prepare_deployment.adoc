@@ -1,0 +1,68 @@
+---
+permalink: deploy/prepare_deployment.html 
+sidebar: sidebar 
+keywords:  
+summary: Você deve implantar as ferramentas do ONTAP em seu ambiente e especificar os parâmetros necessários para poder usar o dispositivo. 
+---
+= Prepare-se para implantar as ferramentas do ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+As ferramentas do ONTAP para VMware vSphere são compatíveis com vários vCenter Server que incluem o provedor VASA.
+
+Você deve estar ciente dos requisitos básicos de back-end de storage, requisitos de aplicativos e requisitos de licença antes de começar a implantar as ferramentas do ONTAP para o VMware vSphere. Antes de implantar as ferramentas do ONTAP para o VMware vSphere, é uma prática recomendada Planejar sua implantação e decidir como você deseja configurar as ferramentas do ONTAP em seu ambiente.
+
+
+
+== Preparando-se para a implantação
+
+A seguir estão os requisitos das ferramentas do ONTAP antes de prosseguir com a implantação:
+
+* Configure e configure seu ambiente do vCenter Server.
+* Transfira o ficheiro _.ova_.
+* Certifique-se de que o host ou o pool de recursos em que o OVA é implantado tenha os recursos mínimos mencionados na seção *requisitos para implantar as ferramentas do ONTAP*.
+* Exclua o cache do navegador.
+* Você precisa de dois IPs virtuais para Load Balancer e Kubernetes API Server. Obtenha dois IPs gratuitos na VLAN, usado para implantação, que é usado para acessar os serviços pós-implantação.
+* Procure certificados de CA (certificados raiz , folha e intermediário) da CA comercial.
+* No caso de implantação multi-vCenter em que os certificados de CA personalizados são obrigatórios, mapeie o *Nome de domínio* no qual o certificado é emitido para o *Virtual IP*. Execute uma verificação de ping no nome de domínio para verificar se o domínio está sendo resolvido para o IP pretendido.
+* É necessária uma VM de storage no ONTAP com NFS habilitado. Siga as etapas abaixo para configurar a VM de armazenamento:
++
+** Tenha o Gerenciador de sistema do ONTAP e a CLI do ONTAP abertos.
+** Se você preferir criar uma nova VM de storage, faça login no Gerenciador de sistema do ONTAP e crie uma VM de storage com o NFS habilitado.
+** Adicione um agregado com pelo menos 100GB.
+** Para verificar se o agregado foi adicionado com sucesso:
++
+A) Faça login no seu CLI do ONTAP
+
++
+B) execute o comando, vserver show -fields aggr-list
+
++
+c) se o seu agregado não tiver sido listado na VM de armazenamento padrão, execute o comando <aggregate name>
+
++
+Para localizar o nome do agregado que deseja adicionar à VM de armazenamento padrão, você pode usar o seguinte comando na CLI do ONTAP: _aggr show_
+
++
+Este comando exibe uma lista de agregados no sistema de armazenamento e você pode encontrar o nome do agregado que você precisa usar na coluna *agregado*.
+
+** Há duas opções com configuração de implantação: Uma delas é credenciais de cluster e a outra é credenciais SVM ou SVM direto. Para SVM direto, você precisa configurar o LIF de gerenciamento para o SVM antes de iniciar a implantação. Ignore isso para credenciais de cluster.
+** Certifique-se de que existe uma rota de rede, inicie sessão na CLI do ONTAP e execute o comando, a rota de rede show -vserver
++
+Se não existir, faça o login na sua CLI do ONTAP e execute os seguintes comandos, NET route create -vserver <vserver name> -destination <destination IP> -gateway <gateway IP> -métrica 20
+
+** Certifique-se de que existe uma Política de exportação para a VM de armazenamento. No Gerenciador do sistema ONTAP, vá para *armazenamento* > *VMs de armazenamento* > *[nome da VM de armazenamento]* > *Configurações* > *políticas de exportação*. Se não houver nenhuma política de exportação, siga a próxima etapa.
+** Crie uma regra de política de exportação usando os seguintes comandos da CLI do ONTAP
++
+Regra de política de exportação de svm criar -vserver.storage VM name> -policyname.export policy name> -clientmatch <ESXI-IP> -rorule any -rwrule any -superuser any
+
++
+
+NOTE: Certifique-se de que o valor _superuser_ não é _none_.
+
+
+
+

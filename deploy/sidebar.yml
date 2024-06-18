@@ -1,0 +1,18 @@
+---
+section: deploy
+title: Implantar ferramentas do ONTAP
+entries:
+- title: Ferramentas ONTAP Início rápido
+  url: "/deploy/qsg_10.html"
+- title: Requisitos para implantar as ferramentas do ONTAP
+  url: "/deploy/concept_space_and_sizing_requirements_for_ontap_tools_for_vmware_vsphere.html"
+- title: Como baixar as ferramentas do ONTAP
+  url: "/deploy/concept_how_to_download_ontap_tools.html"
+- title: Lista de verificação de implantação
+  url: "/deploy/deployment_checklist.html"
+- title: Prepare-se para implantar as ferramentas do ONTAP
+  url: "/deploy/prepare_deployment.html"
+- title: Como implantar a configuração de nó único não HA
+  url: "/deploy/nonha_deployment.html"
+- title: Como implantar a configuração de três nós de HA
+  url: "/deploy/ha_three_node.html"

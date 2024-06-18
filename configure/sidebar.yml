@@ -1,0 +1,24 @@
+---
+section: configure
+title: Configurar ferramentas do ONTAP
+entries:
+- title: Gerencie o acesso à rede
+  url: "/configure/ip_whitelisting.html"
+- title: Configurar funções de usuário e Privileges
+  url: "/configure/task_configure_user_role_and_privileges.html"
+- title: Interface de usuário do Gerenciador de ferramentas do ONTAP
+  url: "/configure/ontap_tools_manager_ui.html"
+- title: Adicione o vCenter
+  url: "/configure/add_vcenter.html"
+- title: Adicionar back-end de storage
+  url: "/configure/add_storage_backend.html"
+- title: Associar o back-end de storage ao vCenter
+  url: "/configure/associate_storage_backend.html"
+- title: Back-end de storage integrado (SVM ou cluster) com vCenter
+  url: "/configure/onboard_svm.html"
+- title: Registre o provedor VASA no vCenter
+  url: "/configure/register_vasa.html"
+- title: Crie o datastore vVols
+  url: "/configure/create_vvols_datastore.html"
+- title: Verificar SVM registrado
+  url: "/configure/verify_registered_svm.html"

@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: deploy/qsg_10.html 
+keywords: QSG, ONTAP tools for VMware vSphere, Quick start guide, Installing 
+summary: Fornece instruções para implantar e inicializar ferramentas do ONTAP para VMware vSphere. 
+---
+= Ferramentas do ONTAP para o início rápido do VMware vSphere
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+O ONTAP Tools para VMware vSphere é um único plug-in do vCenter Server que inclui ferramentas ONTAP e extensões do provedor VASA. As ferramentas do ONTAP são recomendadas para todos os ambientes do ONTAP vSphere, pois configuram as configurações do host ESXi e provisionam o armazenamento do ONTAP usando as práticas recomendadas. O provedor VASA é necessário para suporte a volumes virtuais (vVols).
+
+
+
+== Preparando-se para a instalação
+
+Você implanta o plug-in como um dispositivo virtual, o que reduz o esforço de instalar e Registrar cada produto separadamente com o vCenter Server.
+
+
+
+=== Requisitos de implantação
+
+Antes de implantar as ferramentas do ONTAP para o VMware vSphere, você deve estar familiarizado com os requisitos de espaço para o pacote de implantação e alguns requisitos básicos do sistema de host.
+
+Você pode usar as ferramentas do ONTAP com um Windows vCenter Server ou com um VMware vCenter Server VirtualAppliance (vCSA). Você deve implantar as ferramentas do ONTAP em um vSphere compatível que inclua o sistema ESXi.
+
+* * Requisitos de espaço do pacote de instalação por nó*
++
+** 10 GB para instalações com provisionamento reduzido
+** 200 GB para instalações com provisionamento espesso
+
+
+* *Requisitos de dimensionamento do sistema anfitrião por nó* a memória recomendada de acordo com o tamanho da implementação e por nó é como mostrado na tabela abaixo:
+
+
+|===
+
+
+| Tipo de implantação | CPUs | Memória (GB) 
+
+
+| Pequeno (S) | 8 | 16 
+
+
+| Médio (M) | 12 | 24 
+
+
+| Grande (L) | 16 | 32 
+|===
+
+
+== Requisitos mínimos de storage e aplicação:
+
+|===
+| Storage, host e aplicações | Requisitos de versão 
+
+
+| ONTAP | ONTAP 9.10,1 , 9,11 , 9,12 e 9,13 
+
+
+| VMware vSphere | A versão mínima suportada do VMware é 7,0.3. 
+
+
+| Hosts ESXi | ESXi 7.0.3 ou versão posterior 
+
+
+| Servidor vCenter | VCenter 7.0.3 
+
+
+| Fornecedor VASA | 3,0 
+
+
+| Aplicação OVA | 10,0 
+|===
+Para obter mais informações, consulte link:../deploy/concept_space_and_sizing_requirements_for_ontap_tools_for_vmware_vsphere.html["Requisitos para implantar as ferramentas do ONTAP"]
+
+
+
+=== Requisitos das ferramentas do ONTAP
+
+* Configure e configure seu ambiente do vCenter Server.
+* Transfira o ficheiro .ova.
+* As credenciais de login para sua instância do vCenter Server.
+* Exclua o cache do navegador para evitar qualquer problema de cache do navegador durante a implantação das ferramentas do ONTAP.
+* Configure o gateway padrão a ser usado pelo appliance virtual para responder aos pings ICMP.
+* Um nome de host DNS válido para o dispositivo virtual.
+
+
+
+
+== Implantação de ferramentas do ONTAP
+
+.Passos
+. Faça download `.zip` do arquivo que contém binários e certificados assinados do https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["Site de suporte da NetApp"^] para um sistema vSphere Client para implantar as ferramentas do ONTAP.
+. Extraia o `.zip` arquivo e implante o `.ova` arquivo.
+. Faça login no servidor vSphere.
+. Navegue até o pool de recursos ou o host onde você deseja implantar o OVA.
+. Clique com o botão direito do rato no centro de dados pretendido e selecione *Deploy OVF template...*.
+. Você pode inserir o URL do arquivo .ova ou navegar para a pasta onde o arquivo .ova é salvo e, em seguida, selecionar *Next*.
+. Insira os detalhes necessários para concluir a implantação.
+
+
+Você pode exibir o andamento da implantação na guia tarefas e esperar a conclusão da implantação.

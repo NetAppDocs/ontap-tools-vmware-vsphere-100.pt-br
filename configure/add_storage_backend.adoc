@@ -1,0 +1,30 @@
+---
+permalink: configure/add_storage_backend.html 
+sidebar: sidebar 
+keywords:  
+summary: Os backends de armazenamento são sistemas que os hosts EXSi usam para armazenamento de dados. 
+---
+= Adicionar back-end de storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os backends de armazenamento são sistemas que os hosts EXSi usam para armazenamento de dados.
+
+*Sobre esta tarefa*
+
+Essa tarefa ajuda você a onbord o cluster do ONTAP.
+
+*Passos*
+
+. Inicie `\https://loadBalanceIP:8443/virtualization/ui/` a partir do navegador com as credenciais de administrador das ferramentas do ONTAP fornecidas durante a implantação.
+. Selecione *backends de armazenamento* na barra lateral.
+. Selecione *Adicionar*.
+. Forneça os detalhes do Endereço IP do servidor ou FQDN, Nome de usuário e Senha e selecione *Adicionar*.
++
+
+NOTE: Apenas IPv4 LIFs de gerenciamento são suportados.
+
+
