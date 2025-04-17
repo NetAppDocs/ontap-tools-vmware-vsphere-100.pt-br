@@ -786,7 +786,6 @@
   <block id="150c11d2fb1d5e6242da40527b23ffd9" category="inline-link">Ferramentas do ONTAP para notas de versão do VMware vSphere 10,0</block>
   <block id="93f3f265f2143a470bdb4fbcdbcb95c8" category="paragraph">Para obter mais informações, consulte<block ref="34929a729deab75efa497077f0c37366" category="inline-link-rx"></block> .</block>
   <block id="8f7be3c874feb6ef0fd5f20afd8d5fbb" category="sidebar">As ferramentas do ONTAP para o VMware vSphere permitem configurar, gerenciar e proteger seus datastores virtuais no ambiente do vCenter Server.</block>
-  <block id="46c4d9bfa1c229940459326940489ab0" category="sidebar">Ferramentas do ONTAP para documentação do VMware vSphere</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Comece agora</block>
   <block id="da951ef1610be90b45b31baf7b25b179" category="sidebar">Saiba mais sobre as ferramentas do ONTAP para VMware vSphere</block>
   <block id="3d7fe3e43f9f24fffe5ed0d546d12f13" category="sidebar">Implantar ferramentas do ONTAP</block>
@@ -808,4 +807,5 @@
   <block id="4226794a7bb33ab0a2309e30c07c9031" category="sidebar">Gerenciar ferramentas do ONTAP</block>
   <block id="956040396bc93fbe70e3c9e235f5bfdb" category="sidebar">Acesse o console de manutenção das ferramentas do ONTAP</block>
   <block id="1fa54bab7f1f7a04eb85d45383a68d04" category="sidebar">Migrar para a versão mais recente das ferramentas do ONTAP</block>
+  <block id="70805c0934ed6aecfa95bd2f05ac18f9" category="sidebar">Ferramentas do ONTAP para documentação do VMware vSphere 10,0</block>
 </blocks>
